@@ -356,6 +356,8 @@ two environment variables, **YUM_REPOS_D** and **LOCAL_REPO**.
     ```sh
     [root@x86_64 ~]# tar zxvf cross-sms-aarch64.sh.tar.gz
 
+    [root@x86_64 ~]# cd cross-sms-aarch64.sh
+
     [root@x86_64 cross-sms-aarch64.sh]# docker load < arm64v8_centos_7.tar.gz
 
     [root@x86_64 cross-sms-aarch64.sh]# docker load < sms-aarch64.sh.tar.gz
