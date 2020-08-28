@@ -67,7 +67,7 @@ all: build
 
 build: $(PROC_BINFMT_MISC_AARCH64) $(CURRENT_QEMU_USER_STATIC)
 	docker build -f Dockerfile.$(base_os) $(DOCKER_BUILD_ARGS) \
-		-t sms-aarch64.sh:$(docker_image_tag) .
+		-t sms-aarch64-draft.sh:$(docker_image_tag) .
 
 $(CURRENT_QEMU_USER_STATIC):
 	$(if $(wildcard $(QEMU_USER_STATIC_DEB_FILE)),,\
@@ -81,9 +81,9 @@ $(PROC_BINFMT_MISC_AARCH64): $(BINFMT_MISC_AARCH64_CONF)
 $(BINFMT_MISC_AARCH64_CONF): $(CURRENT_BINFMT_MISC_AARCH64_CONF)
 	cp -p $< $(@D)
 
-install: $(install_path)/sms-aarch64.sh
+install: $(install_path)/sms-aarch64-draft.sh
 
-$(install_path)/sms-aarch64.sh: sms-aarch64.sh docker_volume
+$(install_path)/sms-aarch64-draft.sh: sms-aarch64-draft.sh docker_volume
 	install -o root -g root $< $(install_path)
 
 docker_volume: $(PROC_BINFMT_MISC_AARCH64)

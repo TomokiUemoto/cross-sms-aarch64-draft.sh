@@ -64,23 +64,23 @@ HTTPS_PROXY environment variables.
 
 ```sh
 1. clone
-[root@x86_64 ~]# git clone https://github.com/NaohiroTamura/cross-sms-aarch64.sh
+[root@x86_64 ~]# git clone https://github.com/NaohiroTamura/cross-sms-aarch64-draft.sh
 
 2. change directory
-[root@x86_64 ~]# cd cross-sms-aarch64.sh
+[root@x86_64 ~]# cd cross-sms-aarch64-draft.sh
 
 3. make depends on OS and OpenHPC version
-[root@x86_64 cross-sms-aarch64.sh]# make                  # CentOS 7.7 for OpenHPC 1.3.9
-[root@x86_64 cross-sms-aarch64.sh]# make base_os=centos8  # CentOS 8.1 for OpenHPC 2.0
-[root@x86_64 cross-sms-aarch64.sh]# make base_os=leap15   # Leap 15.1  for OpenHPC 2.0
+[root@x86_64 cross-sms-aarch64-draft.sh]# make                  # CentOS 7.7 for OpenHPC 1.3.9
+[root@x86_64 cross-sms-aarch64-draft.sh]# make base_os=centos8  # CentOS 8.1 for OpenHPC 2.0
+[root@x86_64 cross-sms-aarch64-draft.sh]# make base_os=leap15   # Leap 15.1  for OpenHPC 2.0
 
 4. install
-[root@x86_64 cross-sms-aarch64.sh]# make install sms_ip=XX.XX.XX.XX
+[root@x86_64 cross-sms-aarch64-draft.sh]# make install sms_ip=XX.XX.XX.XX
 ```
 
 ## Usage
 
-*sms-aarch64.sh* is mainly used for two purposes:
+*sms-aarch64-draft.sh* is mainly used for two purposes:
 
 1. build aarch64 initial BOS image onto SMS x86_64 file system
 2. install aarch64 OpenHPC Development Components into SMS x86_64 file
@@ -125,7 +125,7 @@ don't have to set it up in the container.
 ### 3.6 Deﬁne compute image for provisioning
 
 In order to build aarch64 initial BOS Image, you need to interact with
-*sms-aarch64.sh* container. Be careful about the difference of the
+*sms-aarch64-draft.sh* container. Be careful about the difference of the
 prompts between *[root@x86_64 ~]#* and *[root@aarch64 /]#*
 
 Note that the step **"cp -p /usr/bin/qemu-aarch64-static
@@ -140,7 +140,7 @@ support Linux Capabilities which *iputils* package requires.
 ```sh
 # start interactive shell. it takes time to start for the first time
 # due to volume initialization
-[root@x86_64 ~]# sms-aarch64.sh
+[root@x86_64 ~]# sms-aarch64-draft.sh
 
 # create the image on host file system, but not on NFS
 [root@aarch64 /]# export CHROOT=/var/chroots/centos7.7
@@ -281,52 +281,52 @@ Boot the CN aarch64 via IPMI as CN x86_64.
 
 ### 4.1 Development Tools
 
-*sms-aarch64.sh* can be used not only interactive shell but also batch
+*sms-aarch64-draft.sh* can be used not only interactive shell but also batch
 shell as follows.
 
 ```sh
-[root@x86_64 ~]# sms-aarch64.sh yum -y install ohpc-autotools
-[root@x86_64 ~]# sms-aarch64.sh yum -y install EasyBuild-ohpc
-[root@x86_64 ~]# sms-aarch64.sh yum -y install hwloc-ohpc
-[root@x86_64 ~]# sms-aarch64.sh yum -y install spack-ohpc
-[root@x86_64 ~]# sms-aarch64.sh yum -y install valgrind-ohpc
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install ohpc-autotools
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install EasyBuild-ohpc
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install hwloc-ohpc
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install spack-ohpc
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install valgrind-ohpc
 ```
 ### 4.2 Compilers
 
 ```sh
-[root@x86_64 ~]# sms-aarch64.sh yum -y install gnu8-compilers-ohpc
-[root@x86_64 ~]# sms-aarch64.sh yum -y install llvm5-compilers-ohpc
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install gnu8-compilers-ohpc
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install llvm5-compilers-ohpc
 ```
 
 ### 4.3 MPI Stacks
 
 ```sh
-[root@x86_64 ~]# sms-aarch64.sh yum -y install openmpi3-gnu8-ohpc mpich-gnu8-ohpc
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install openmpi3-gnu8-ohpc mpich-gnu8-ohpc
 ```
 
 ### 4.4 Performance Tools
 
 ```sh
-[root@x86_64 ~]# sms-aarch64.sh yum -y install ohpc-gnu8-perf-tools
-[root@x86_64 ~]# sms-aarch64.sh yum -y install lmod-defaults-gnu8-openmpi3-ohpc
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install ohpc-gnu8-perf-tools
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install lmod-defaults-gnu8-openmpi3-ohpc
 ```
 
 ### 4.5 Setup default development environment
 
 ```sh
-[root@x86_64 ~]# sms-aarch64.sh yum -y install lmod-defaults-gnu8-openmpi3-ohpc
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install lmod-defaults-gnu8-openmpi3-ohpc
 ```
 
 ### 4.6 3rd Party Libraries and Tools
 
 ```sh
-[root@x86_64 ~]# sms-aarch64.sh yum -y install ohpc-gnu8-serial-libs
-[root@x86_64 ~]# sms-aarch64.sh yum -y install ohpc-gnu8-io-libs
-[root@x86_64 ~]# sms-aarch64.sh yum -y install ohpc-gnu8-python-libs
-[root@x86_64 ~]# sms-aarch64.sh yum -y install ohpc-gnu8-runtimes
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install ohpc-gnu8-serial-libs
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install ohpc-gnu8-io-libs
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install ohpc-gnu8-python-libs
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install ohpc-gnu8-runtimes
 
-[root@x86_64 ~]# sms-aarch64.sh yum -y install ohpc-gnu8-mpich-parallel-libs
-[root@x86_64 ~]# sms-aarch64.sh yum -y install ohpc-gnu8-openmpi3-parallel-libs
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install ohpc-gnu8-mpich-parallel-libs
+[root@x86_64 ~]# sms-aarch64-draft.sh yum -y install ohpc-gnu8-openmpi3-parallel-libs
 ```
 
 ## Tips
@@ -340,32 +340,32 @@ two environment variables, **YUM_REPOS_D** and **LOCAL_REPO**.
 1. make and backup in Internet accessible host
 
     ```sh
-    [root@x86_64 cross-sms-aarch64.sh]# make
+    [root@x86_64 cross-sms-aarch64-draft.sh]# make
 
-    [root@x86_64 cross-sms-aarch64.sh]# docker save docker.io/arm64v8/centos:7 | gzip > arm64v8_centos_7.tar.gz
+    [root@x86_64 cross-sms-aarch64-draft.sh]# docker save docker.io/arm64v8/centos:7 | gzip > arm64v8_centos_7.tar.gz
 
-    [root@x86_64 cross-sms-aarch64.sh]# docker save sms-aarch64.sh:latest | gzip > sms-aarch64.sh.tar.gz
+    [root@x86_64 cross-sms-aarch64-draft.sh]# docker save sms-aarch64-draft.sh:latest | gzip > sms-aarch64-draft.sh.tar.gz
 
-    [root@x86_64 cross-sms-aarch64.sh]# cd ..
+    [root@x86_64 cross-sms-aarch64-draft.sh]# cd ..
 
-    [root@x86_64 ~]# tar zcvf cross-sms-aarch64.sh.tar.gz cross-sms-aarch64.sh
+    [root@x86_64 ~]# tar zcvf cross-sms-aarch64-draft.sh.tar.gz cross-sms-aarch64-draft.sh
     ```
 
 2. restore and make install in Internet isolated host
 
     ```sh
-    [root@x86_64 ~]# tar zxvf cross-sms-aarch64.sh.tar.gz
+    [root@x86_64 ~]# tar zxvf cross-sms-aarch64-draft.sh.tar.gz
 
-    [root@x86_64 ~]# cd cross-sms-aarch64.sh
+    [root@x86_64 ~]# cd cross-sms-aarch64-draft.sh
 
-    [root@x86_64 cross-sms-aarch64.sh]# docker load < arm64v8_centos_7.tar.gz
+    [root@x86_64 cross-sms-aarch64-draft.sh]# docker load < arm64v8_centos_7.tar.gz
 
-    [root@x86_64 cross-sms-aarch64.sh]# docker load < sms-aarch64.sh.tar.gz
+    [root@x86_64 cross-sms-aarch64-draft.sh]# docker load < sms-aarch64-draft.sh.tar.gz
 
-    [root@x86_64 cross-sms-aarch64.sh]# make install sms_ip=XX.XX.XX.XX
+    [root@x86_64 cross-sms-aarch64-draft.sh]# make install sms_ip=XX.XX.XX.XX
     ```
 
-3. set environment variables and run sms-aarch64.sh
+3. set environment variables and run sms-aarch64-draft.sh
 
     * Set yum repo files path of the container host to the environment
       variable **YUM_REPOS_D** which is mapped to */etc/yum.repos.d*
@@ -386,7 +386,7 @@ two environment variables, **YUM_REPOS_D** and **LOCAL_REPO**.
     [root@x86_64 ~]# ls $LOCAL_REPO
     CentOS_7 centos-7.7 epel-7
 
-    [root@x86_64 ~]# sms-aarch64.sh
+    [root@x86_64 ~]# sms-aarch64-draft.sh
 
     [root@aarch64 /]# ls /etc/yum.repos.d
     centos-7.7  epel-7  OpenHPC.local.repo
@@ -405,7 +405,7 @@ two environment variables, **YUM_REPOS_D** and **LOCAL_REPO**.
     [root@x86_64 ~]# ls $LOCAL_REPO
     CentOS_7  centos-7.7  epel-7
 
-    [root@x86_64 ~]# sms-aarch64.sh
+    [root@x86_64 ~]# sms-aarch64-draft.sh
 
     [root@aarch64 /]# ls /repos
     CentOS_7  centos-7.7  epel-7
@@ -415,7 +415,7 @@ two environment variables, **YUM_REPOS_D** and **LOCAL_REPO**.
 
 ### make
 
-What *make* does is to build docker container named *sms-aarch64.sh*.
+What *make* does is to build docker container named *sms-aarch64-draft.sh*.
 
 *qemu-aarch64-static* binary is retrieved from Ubuntu package, since
 it's static binary which can run on any Linux.
@@ -426,18 +426,18 @@ as not to download from Ubuntu.
 
 ```sh
 # setup binfmt_misc for aarch64
-[root@x86_64 cross-sms-aarch64.sh]# cp -p etc/binfmt.d/aarch64.conf /etc/binfmt.d
-[root@x86_64 cross-sms-aarch64.sh]# systemctl restart systemd-binfmt
+[root@x86_64 cross-sms-aarch64-draft.sh]# cp -p etc/binfmt.d/aarch64.conf /etc/binfmt.d
+[root@x86_64 cross-sms-aarch64-draft.sh]# systemctl restart systemd-binfmt
 
 # make sure that /proc/sys/fs/binfmt_misc/aarch64 is created
-[root@x86_64 cross-sms-aarch64.sh]# ll /proc/sys/fs/binfmt_misc/aarch64
+[root@x86_64 cross-sms-aarch64-draft.sh]# ll /proc/sys/fs/binfmt_misc/aarch64
 
 # download qemu-aarch64-static
-[root@x86_64 cross-sms-aarch64.sh]# wget http://security.ubuntu.com/ubuntu/pool/universe/q/qemu/qemu-user-static_3.1+dfsg-2ubuntu3.1_amd64.deb
-[root@x86_64 cross-sms-aarch64.sh]# ar p qemu-user-static_3.1+dfsg-2ubuntu3.1_amd64.deb data.tar.xz | tar Jxvf - ./usr/bin/qemu-aarch64-static
+[root@x86_64 cross-sms-aarch64-draft.sh]# wget http://security.ubuntu.com/ubuntu/pool/universe/q/qemu/qemu-user-static_3.1+dfsg-2ubuntu3.1_amd64.deb
+[root@x86_64 cross-sms-aarch64-draft.sh]# ar p qemu-user-static_3.1+dfsg-2ubuntu3.1_amd64.deb data.tar.xz | tar Jxvf - ./usr/bin/qemu-aarch64-static
 
 # build container in case of CentOS 7.7 for OpenHPC 1.3.9
-[root@x86_64 cross-sms-aarch64.sh]# docker build -f Dockerfile.centos7 -t sms-aarch64.sh .
+[root@x86_64 cross-sms-aarch64-draft.sh]# docker build -f Dockerfile.centos7 -t sms-aarch64-draft.sh .
 ```
 
 ### make install
@@ -451,32 +451,32 @@ What *make install* does is the following four steps:
    * Docker volume has to be empty. If not, docker doesn't initialize
      the volume at the first time invocation. Otherwise it causes
      inconsistency.
-4. Install docker client shell, sms-aarch64.sh
+4. Install docker client shell, sms-aarch64-draft.sh
 
 ```sh
 # 1. set up binfmt_misc if /proc/sys/fs/binfmt_misc/aarch64 doesn't exist
-[root@x86_64 cross-sms-aarch64.sh]# if [ ! -e /proc/sys/fs/binfmt_misc/aarch64 ]; then \
+[root@x86_64 cross-sms-aarch64-draft.sh]# if [ ! -e /proc/sys/fs/binfmt_misc/aarch64 ]; then \
 > cp -p etc/binfmt.d/aarch64.conf /etc/binfmt.d; \
 > systemctl restart systemd-binfmt; \
 > fi
 
 # 2. export /opt/ohpc-aarch64/opt/ohpc from master server to docker container in case of CentOS 7.7 for OpenHPC 1.3.9
-[root@x86_64 cross-sms-aarch64.sh]# mkdir -p /opt/ohpc-aarch64/opt/ohpc
-[root@x86_64 cross-sms-aarch64.sh]# echo "/opt/ohpc-aarch64/opt/ohpc 172.17.0.0/16(rw,no_subtree_check,no_root_squash) ${sms_ip}/32(rw,no_subtree_check,no_root_squash)" >> /etc/exports
-[root@x86_64 cross-sms-aarch64.sh]# exportfs -ra
+[root@x86_64 cross-sms-aarch64-draft.sh]# mkdir -p /opt/ohpc-aarch64/opt/ohpc
+[root@x86_64 cross-sms-aarch64-draft.sh]# echo "/opt/ohpc-aarch64/opt/ohpc 172.17.0.0/16(rw,no_subtree_check,no_root_squash) ${sms_ip}/32(rw,no_subtree_check,no_root_squash)" >> /etc/exports
+[root@x86_64 cross-sms-aarch64-draft.sh]# exportfs -ra
 
 # 3. create Docker NFS volume and local volume
-[root@x86_64 cross-sms-aarch64.sh]# docker volume create --driver local \
+[root@x86_64 cross-sms-aarch64-draft.sh]# docker volume create --driver local \
   --opt type=nfs \
   --opt o=addr=${sms_ip},rw,nfsvers=3 \
   --opt device=:/opt/ohpc-aarch64/opt/ohpc ohpc-aarch64
-[root@x86_64 cross-sms-aarch64.sh]# docker volume create yum-aarch64
-[root@x86_64 cross-sms-aarch64.sh]# docker volume ls
+[root@x86_64 cross-sms-aarch64-draft.sh]# docker volume create yum-aarch64
+[root@x86_64 cross-sms-aarch64-draft.sh]# docker volume ls
 DRIVER              VOLUME NAME
 local               ohpc-aarch64
 local               yum-aarch64
-[root@x86_64 cross-sms-aarch64.sh]# mkdir -p /opt/ohpc-aarch64/var/chroots
-[root@x86_64 cross-sms-aarch64.sh]# tree /opt/ohpc-aarch64/
+[root@x86_64 cross-sms-aarch64-draft.sh]# mkdir -p /opt/ohpc-aarch64/var/chroots
+[root@x86_64 cross-sms-aarch64-draft.sh]# tree /opt/ohpc-aarch64/
 /opt/ohpc-aarch64/
 ├── opt
 │   └── ohpc
@@ -484,5 +484,5 @@ local               yum-aarch64
     └── chroots
 
 # 4. Install docker client shell
-[root@x86_64 cross-sms-aarch64.sh]# install -o root -g root sms-aarch64.sh /usr/local/bin
+[root@x86_64 cross-sms-aarch64-draft.sh]# install -o root -g root sms-aarch64-draft.sh /usr/local/bin
 ```
